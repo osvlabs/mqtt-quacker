@@ -1,0 +1,16 @@
+{
+    "E_all": "q:float:0,100",
+    "E_highest": "q:float:0,100",
+    "E_high": "q:float:0,100",
+    "E_normal": "q:float:0,100",
+    "E_low": "q:float:0,100",
+    "voltage": "q:float:300,380",
+    "current": "q:float:0,10",
+    "power_P": "q:float:0,10",
+    "power_Q": "q:float:0,10",
+    "power_S": "q:float:0,10",
+    "power_factor": "q:float:0.99,1",
+    "Hz": "q:float:49,51",
+    "address": 150,
+    "id": "A6123456789A"
+}

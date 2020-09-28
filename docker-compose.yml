@@ -1,0 +1,25 @@
+version: "3"
+
+networks:
+  quacker:
+    driver: bridge
+
+services:
+  # quacker
+  quacker:
+    build:
+      context: .
+    environment:
+      QUACKER_HOST: "mqtt.host.com"
+      QUACKER_PORT: "1883"
+      QUACKER_USERNAME: "mqtt-username"
+      QUACKER_PASSWORD: "mqtt-password"
+      QUACKER_TOPIC: "your/topic/to/send"
+      QUACKER_CLIENTID: "mqtt-quacker"
+      QUACKER_QOS: "0"
+      QUACKER_INTERVAL: "1"
+      QUACKER_DATAFILE: "/data.json"
+    volumes:
+      - ./data.json:/data.json
+    networks:
+      - quacker
