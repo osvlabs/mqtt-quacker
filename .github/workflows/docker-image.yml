@@ -13,9 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag zgldh/mqtt-quacker:$(date +%s)
     - name: Docker Action
       # You may pin to the exact commit or the version.
       # uses: zenato/docker-action@8309ea4d790d074676660449b9f2bcbcae25cdb9
