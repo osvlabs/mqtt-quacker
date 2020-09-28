@@ -3,9 +3,9 @@
 Send mock data to your MQTT topic.
 
 ## Usage docker
-```
+`
 docker run -e QUACKER_HOST=mqtt.host.com -e QUACKER_PORT=1883 -e QUACKER_USERNAME=mqtt-username -e QUACKER_PASSWORD=mqtt-password -e QUACKER_TOPIC=my-topic/telemetry -v /home/zgldh/my-project/data.json:/data.json zgldh/mqtt-quacker
-```
+`
 
 ## Usage docker-compose
 
