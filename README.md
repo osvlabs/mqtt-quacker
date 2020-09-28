@@ -31,8 +31,8 @@ QUACKER_DATAFILE| The mock data template. |"/data.json"
 
 ## Custom Data
 Please edit the file `data.json` to any text you want. It support following placeholders:
-- `q:float:{min}:{max}` to generate a float number between min and max
-- `q:int:{min}:{max}` to generate an integer number between min and max. **NOT SUPPORTED YET**
+- `q:float:{min}:{max}` to generate a float number between [min, max).
+- `q:int:{min}:{max}` to generate an integer number between [min, max).
 
 Currently no more placeholders supported.
 

@@ -49,7 +49,7 @@ func (b *DataBuilder) parse() error {
 	}
 
 	slotCount := 0
-	innerMatcher, err := regexp.Compile("\"q:(float):(.*),(.*)\"")
+	innerMatcher, err := regexp.Compile("\"q:(.*):(.*),(.*)\"")
 	if err != nil {
 		return err
 	}
@@ -90,6 +90,9 @@ func (b *DataBuilder) parseProvider(slotCount int, innerMatcher *regexp.Regexp, 
 	return func() string {
 		if valueType == "float" {
 			return strconv.FormatFloat(rand.Float64()*(maxValue-minValue)+minValue, 'f', 10, 64)
+		}
+		if valueType == "int" {
+			return strconv.FormatInt(int64(rand.Float64()*(maxValue-minValue)+minValue), 10)
 		}
 		return "unknown"
 	}

@@ -11,6 +11,7 @@
     "power_S": "q:float:0,10",
     "power_factor": "q:float:0.99,1",
     "Hz": "q:float:49,51",
+    "Foo": "q:int:20,30",
     "address": 150,
     "id": "A6123456789A"
 }
