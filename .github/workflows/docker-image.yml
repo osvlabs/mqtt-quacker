@@ -28,4 +28,4 @@ jobs:
         # Registry hostname
         #registry: # optional
         # Image tag
-        #tag: # optional 
+        tag: latest
