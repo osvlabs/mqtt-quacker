@@ -66,9 +66,10 @@ func (q *Quacker) Start() error {
 	opts.SetPassword(q.config.Password)
 
 	client := MQTT.NewClient(opts)
-
+	publishLabel := "Publish"
 	if q.config.DryRun {
 		fmt.Println("Dry run")
+		publishLabel = "Dry Run"
 	} else {
 		if token := client.Connect(); token.Wait() && token.Error() != nil {
 			panic(token.Error())
@@ -79,7 +80,7 @@ func (q *Quacker) Start() error {
 	fmt.Printf("Client ID %s\n", q.config.ClientId)
 	fmt.Println("Publisher Started to: " + q.config.Topic)
 	for true {
-		fmt.Printf("%s ---- Publish ----\n", time.Now())
+		fmt.Printf("%s ---- %s ----\n", time.Now(), publishLabel)
 		payload = q.getPayload()
 
 		if !q.config.DryRun {

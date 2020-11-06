@@ -28,6 +28,7 @@ QUACKER_CLIENTID| The client ID |"mqtt-quacker"
 QUACKER_QOS| Please check MQTT doc. 0, 1, 2 |"0"
 QUACKER_INTERVAL| Time interval between two data sending. |"1"
 QUACKER_DATAFILE| The mock data template. |"/data.json"
+QUACKER_DRYRUN| Dont push to server, just output payload. |""
 
 ## Custom Data
 Please edit the file `data.json` to any text you want. It support following placeholders:
