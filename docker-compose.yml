@@ -10,15 +10,16 @@ services:
     build:
       context: .
     environment:
-      QUACKER_HOST: "mqtt.host.com"
-      QUACKER_PORT: "1883"
-      QUACKER_USERNAME: "mqtt-username"
-      QUACKER_PASSWORD: "mqtt-password"
-      QUACKER_TOPIC: "your/topic/to/send"
-      QUACKER_CLIENTID: "mqtt-quacker"
-      QUACKER_QOS: "0"
-      QUACKER_INTERVAL: "1"
-      QUACKER_DATAFILE: "/data.json"
+      QUACKER_HOST: $QUACKER_HOST
+      QUACKER_PORT: $QUACKER_PORT
+      QUACKER_USERNAME: $QUACKER_USERNAME
+      QUACKER_PASSWORD: $QUACKER_PASSWORD
+      QUACKER_TOPIC: $QUACKER_TOPIC
+      QUACKER_CLIENTID: $QUACKER_CLIENTID
+      QUACKER_QOS: $QUACKER_QOS
+      QUACKER_INTERVAL: $QUACKER_INTERVAL
+      QUACKER_DATAFILE: $QUACKER_DATAFILE
+      QUACKER_DRYRUN: $QUACKER_DRYRUN
     volumes:
       - ./data.json:/data.json
     networks:

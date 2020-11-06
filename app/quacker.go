@@ -20,6 +20,7 @@ type QuackerConfig struct {
 	QoS      string
 	Interval string // Interval - Seconds between two publish
 	DataFile string // DataFile - Data template file path
+	DryRun   bool
 }
 
 // Quacker - The quacker class.
@@ -65,8 +66,13 @@ func (q *Quacker) Start() error {
 	opts.SetPassword(q.config.Password)
 
 	client := MQTT.NewClient(opts)
-	if token := client.Connect(); token.Wait() && token.Error() != nil {
-		panic(token.Error())
+
+	if q.config.DryRun {
+		fmt.Println("Dry run")
+	} else {
+		if token := client.Connect(); token.Wait() && token.Error() != nil {
+			panic(token.Error())
+		}
 	}
 
 	fmt.Printf("MQTT server %s:%s\n", q.config.Host, q.config.Port)
@@ -75,15 +81,22 @@ func (q *Quacker) Start() error {
 	for true {
 		fmt.Printf("%s ---- Publish ----\n", time.Now())
 		payload = q.getPayload()
-		token := client.Publish(q.config.Topic, byte(qos), false, payload)
-		token.Wait()
+
+		if !q.config.DryRun {
+			token := client.Publish(q.config.Topic, byte(qos), false, payload)
+			token.Wait()
+		}
 
 		fmt.Println(payload)
 		time.Sleep(time.Second * time.Duration(interval))
 	}
 
-	client.Disconnect(250)
-	fmt.Println("Publisher Disconnected")
+	if q.config.DryRun {
+		fmt.Println("Publisher Terminated")
+	} else {
+		client.Disconnect(250)
+		fmt.Println("Publisher Disconnected")
+	}
 
 	return nil
 }

@@ -27,6 +27,7 @@ func main() {
 		QoS:      getEnv("QUACKER_QOS", "0"),
 		Interval: getEnv("QUACKER_INTERVAL", "1"),
 		DataFile: getEnv("QUACKER_DATAFILE", "/data.json"),
+		DryRun:   getEnv("QUACKER_DRYRUN", "") != "",
 	}
 
 	quacker := app.NewQuacker(mqttConfig)

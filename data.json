@@ -1,17 +1,14 @@
 {
-    "E_all": "q:float:0,100",
-    "E_highest": "q:float:0,100",
-    "E_high": "q:float:0,100",
-    "E_normal": "q:float:0,100",
-    "E_low": "q:float:0,100",
-    "voltage": "q:float:300,380",
-    "current": "q:float:0,10",
-    "power_P": "q:float:0,10",
-    "power_Q": "q:float:0,10",
-    "power_S": "q:float:0,10",
-    "power_factor": "q:float:0.99,1",
-    "Hz": "q:float:49,51",
-    "Foo": "q:int:20,30",
-    "address": 150,
-    "id": "A6123456789A"
+  "params": {
+    "temperature": "q:float:0,100",
+    "humidity": "q:float:0,100",
+    "wind_speed": "q:float:0,100",
+    "wind_direction": "q:int:0,359",
+    "pressure": "q:float:0,100",
+    "rain_minute": "q:float:0,100",
+    "rain_total": "q:float:0,100",
+    "drop": "q:string:nothing,rain,snow,rain_snow,hail,rain_hail,snow_hail,rain_snow_hail,testing",
+    "solar_radiation": "q:float:0,100",
+    "daily_radiation": "q:float:0,100"
+  }
 }
