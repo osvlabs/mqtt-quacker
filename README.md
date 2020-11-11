@@ -31,7 +31,7 @@ QUACKER_DATAFILE| The mock data template. |"/data.json"
 QUACKER_DRYRUN| Dont push to server, just output payload. |""
 
 ## Custom Data
-Please edit the file `data.json` to any text you want. It support following placeholders:
+Please edit the file `data.json` to any text you want. It supports following placeholders:
 - `q:float:{min},{max}` to generate a float number between [min, max).
 - `q:int:{min},{max}` to generate an integer number between [min, max).
 - `q:string:{str1},{str2},{str3},...,{strn}` to get one string from n strings randomly.
