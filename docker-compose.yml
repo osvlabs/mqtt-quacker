@@ -18,9 +18,8 @@ services:
       QUACKER_CLIENTID: $QUACKER_CLIENTID
       QUACKER_QOS: $QUACKER_QOS
       QUACKER_INTERVAL: $QUACKER_INTERVAL
-      QUACKER_DATAFILE: $QUACKER_DATAFILE
       QUACKER_DRYRUN: $QUACKER_DRYRUN
     volumes:
-      - ./data.json:/data.json
+      - ${QUACKER_DATAFILE}:/data.json
     networks:
       - quacker

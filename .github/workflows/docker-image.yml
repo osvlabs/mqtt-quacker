@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
     - uses: actions/checkout@v2
     - name: Docker Action
       # You may pin to the exact commit or the version.
@@ -28,4 +31,4 @@ jobs:
         # Registry hostname
         #registry: # optional
         # Image tag
-        tag: latest
+        tag: ${{ steps.get_version.outputs.VERSION }}
