@@ -8,6 +8,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // DataBuilderConfig - Configuration of MQTT server
@@ -45,24 +46,24 @@ func (b *DataBuilder) parse() error {
 		return err
 	}
 
-	matcher, err := regexp.Compile("(\"q:.*\")")
+	placeholderMatcher, err := regexp.Compile("((?:\\{|\")q:.*?(?:\"|}){1}?)")
 	if err != nil {
 		return err
 	}
 
 	slotCount := 0
-	innerMatcher, err := regexp.Compile("\"q:(.*):(.*)\"")
+	typeMatcher, err := regexp.Compile("(?:\\{|\")q:(.*?)(?::(.*)?)?(?:\"|}){1}?")
 	if err != nil {
 		return err
 	}
 	slots := make(map[int]Slot)
 
-	parsedTemplate := matcher.ReplaceAllFunc(rawTemplate, func(bytes []byte) []byte {
+	parsedTemplate := placeholderMatcher.ReplaceAllFunc(rawTemplate, func(bytes []byte) []byte {
 		slotCount = slotCount + 1
 		slots[slotCount] = Slot{
 			count:    slotCount,
 			seed:     int(rand.Float32() * 100),
-			provider: b.parseProvider(slotCount, innerMatcher, bytes),
+			provider: b.parseProvider(slotCount, typeMatcher, bytes),
 		}
 
 		return []byte("${" + strconv.Itoa(slotCount) + "}")
@@ -77,8 +78,8 @@ func (b *DataBuilder) parse() error {
 }
 
 // parseProvider - Parse the slot to get value provider function.
-func (b *DataBuilder) parseProvider(slotCount int, innerMatcher *regexp.Regexp, bytes []byte) Provider {
-	result := innerMatcher.FindAllSubmatch(bytes, 10)
+func (b *DataBuilder) parseProvider(slotCount int, typeMatcher *regexp.Regexp, bytes []byte) Provider {
+	result := typeMatcher.FindAllSubmatch(bytes, 10)
 	valueType := string(result[0][1])
 	parameters := result[0][2]
 
@@ -115,7 +116,15 @@ func (b *DataBuilder) parseProvider(slotCount int, innerMatcher *regexp.Regexp, 
 			stringsCount := float64(len(result))
 			stringIndex := int(math.Floor(rand.Float64() * stringsCount))
 			randomStr := string(result[stringIndex][1])
-			return fmt.Sprintf("\"%v\"", randomStr)
+			return fmt.Sprintf("%v", randomStr)
+		}
+		if valueType == "timestamp" {
+			currentTime := time.Now()
+			parameterString := string(parameters)
+			if len(parameterString) <= 0 {
+				parameterString = time.RFC3339
+			}
+			return currentTime.Format(parameterString)
 		}
 		return "unknown"
 	}
