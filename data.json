@@ -7,8 +7,10 @@
     "pressure": "q:float:0,100",
     "rain_minute": "q:float:0,100",
     "rain_total": "q:float:0,100",
-    "drop": "q:string:nothing,rain,snow,rain_snow,hail,rain_hail,snow_hail,rain_snow_hail,testing",
+    "drop": "It dropped {q:string:nothing,rain,snow,rain_snow,hail,rain_hail,snow_hail,rain_snow_hail,testing}",
     "solar_radiation": "q:float:0,100",
-    "daily_radiation": "q:float:0,100"
+    "daily_radiation": "q:float:0,100",
+    "timestamp": "{q:timestamp:Mon Jan _2 15:04:05 MST 2006}",
+    "another_timestamp": "{q:timestamp}"
   }
 }

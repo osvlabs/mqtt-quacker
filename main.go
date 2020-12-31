@@ -25,7 +25,7 @@ func main() {
 		Topic:    getEnvOrFail("QUACKER_TOPIC"),
 		ClientId: getEnv("QUACKER_CLIENTID", "mqtt-quacker"),
 		QoS:      getEnv("QUACKER_QOS", "0"),
-		Interval: getEnv("QUACKER_INTERVAL", "1"),
+		Interval: getEnv("QUACKER_INTERVAL", "1000"),
 		DataFile: getEnv("QUACKER_DATAFILE", "/data.json"),
 		DryRun:   getEnv("QUACKER_DRYRUN", "") != "",
 	}

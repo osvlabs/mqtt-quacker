@@ -53,7 +53,7 @@ func (q *Quacker) Start() error {
 
 	interval, err := strconv.Atoi(q.config.Interval)
 	if err != nil {
-		interval = 1
+		return err
 	}
 	interval = int(math.Max(float64(interval), 1))
 
@@ -89,7 +89,7 @@ func (q *Quacker) Start() error {
 		}
 
 		fmt.Println(payload)
-		time.Sleep(time.Second * time.Duration(interval))
+		time.Sleep(time.Millisecond * time.Duration(interval))
 	}
 
 	if q.config.DryRun {

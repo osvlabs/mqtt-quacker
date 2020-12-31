@@ -11,7 +11,7 @@ docker run
   -e QUACKER_PASSWORD=mqtt-password 
   -e QUACKER_TOPIC=my-topic/telemetry 
   -v /home/zgldh/my-project/data.json:/data.json 
-  zgldh/mqtt-quacker:1.0
+  zgldh/mqtt-quacker:1.1
 ```
 
 ## Usage docker-compose
@@ -33,7 +33,7 @@ QUACKER_PASSWORD| For MQTT server auth. |`mqtt-password`
 QUACKER_TOPIC| Which topic do you want the mock data send to? |`your/topic/to/send`
 QUACKER_CLIENTID| The client ID |`mqtt-quacker`
 QUACKER_QOS| Please check MQTT doc. 0, 1, 2 |`0`
-QUACKER_INTERVAL| Time interval between two data sending. |`1`
+QUACKER_INTERVAL| Time interval between two data sending. (in ms) |`1000`
 QUACKER_DATAFILE| The mock data template. |`./data.json`
 QUACKER_DRYRUN| Dont push to server, just output payload. |""
 
@@ -41,7 +41,8 @@ QUACKER_DRYRUN| Dont push to server, just output payload. |""
 Please edit the file `data.json` to any text you want. It supports following placeholders:
 - `q:float:{min},{max}` to generate a float number between [min, max).
 - `q:int:{min},{max}` to generate an integer number between [min, max).
-- `q:string:{str1},{str2},{str3},...,{strn}` to get one string from n strings randomly.
+- `q:string:{str1},{str2},{str3},...,{strN}` to get one string from n strings randomly.
+- `q:timestamp` to get a current timestamp. You can custom the date format: `q:timestamp:Mon Jan _2 15:04:05 MST 2006` Please refer to: https://golang.org/src/time/format.go
 
 Currently, no more placeholders supported.
 
