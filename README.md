@@ -49,7 +49,7 @@ Currently, no more placeholders supported.
 
 ## Update Logs
 1.2
-- Break changes:  
+- Breaking changes:  
     Use `{q:datetime}` instead of `{q:timestamp}` 
     The `{q:timestamp}` is changed to output real timestamp long integer like `1620904435`
     
