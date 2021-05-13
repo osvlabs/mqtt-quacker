@@ -118,13 +118,21 @@ func (b *DataBuilder) parseProvider(slotCount int, typeMatcher *regexp.Regexp, b
 			randomStr := string(result[stringIndex][1])
 			return fmt.Sprintf("%v", randomStr)
 		}
-		if valueType == "timestamp" {
+		if valueType == "datetime" {
 			currentTime := time.Now()
 			parameterString := string(parameters)
 			if len(parameterString) <= 0 {
 				parameterString = time.RFC3339
 			}
 			return currentTime.Format(parameterString)
+		}
+		if valueType == "timestamp" {
+			currentTime := time.Now()
+			parameterString := string(parameters)
+			if len(parameterString) <= 0 {
+				parameterString = time.RFC3339
+			}
+			return strconv.FormatInt(currentTime.Unix(), 10)
 		}
 		return "unknown"
 	}

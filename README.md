@@ -42,7 +42,19 @@ Please edit the file `data.json` to any text you want. It supports following pla
 - `q:float:{min},{max}` to generate a float number between [min, max).
 - `q:int:{min},{max}` to generate an integer number between [min, max).
 - `q:string:{str1},{str2},{str3},...,{strN}` to get one string from n strings randomly.
-- `q:timestamp` to get a current timestamp. You can custom the date format: `q:timestamp:Mon Jan _2 15:04:05 MST 2006` Please refer to: https://golang.org/src/time/format.go
+- `q:timestamp` to get a current timestamp like `1620904435`.
+- `q:datetime` to get a current datetime string. You can custom the date format: `q:datetime:Mon Jan _2 15:04:05 MST 2006` Please refer to: https://golang.org/src/time/format.go
 
 Currently, no more placeholders supported.
 
+## Update Logs
+1.2
+- Break changes:  
+    Use `{q:datetime}` instead of `{q:timestamp}` 
+    The `{q:timestamp}` is changed to output real timestamp long integer like `1620904435`
+    
+1.1
+- Added `{q:timestamp}` token.
+
+1.0
+- The beginning.
