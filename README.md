@@ -11,7 +11,7 @@ docker run
   -e QUACKER_PASSWORD=mqtt-password 
   -e QUACKER_TOPIC=my-topic/telemetry 
   -v /home/zgldh/my-project/data.json:/data.json 
-  zgldh/mqtt-quacker:1.1
+  zgldh/mqtt-quacker:1.2
 ```
 
 ## Usage docker-compose
